@@ -16,7 +16,17 @@
 	
 	<header class="entry-header">
 		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
+        <meta itemprop="headline" content="<?= the_title('',''); ?>"/>
 	</header><!-- .entry-header -->
+
+         <span class='author' style='display:none;'>
+           <span class="vcard">
+             <span class="fn family-name"> <?php the_author(); ?> </span>
+           </span>
+         </span>
+
+        <meta itemprop="datePublished" content="<?php the_time('o-m-d') ?>"/>
+        <div style='display:none;' datetime="<?php the_time('o-m-d') ?>" class="post-date date updated" pubdate><?php the_time(apply_filters('themify_loop_date', 'M j, Y')) ?></div>
 
 	<div class="entry-content">
 		<?php the_content(); ?>

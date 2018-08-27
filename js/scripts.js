@@ -1,24 +1,30 @@
 
-//Menu dropdown animation
-jQuery(function($) {
+
+jQuery(function($){
+	//Header search
+	$('.js-header-search-button').click(function() {
+		$('.js-header-search-form').submit();
+	});
+
+	//Menu dropdown animation
 	$('.sub-menu').hide();
 	$('.main-navigation .children').hide();
-	$('.menu-item').hover( 
+	$('.menu-item').hover(
 		function() {
 			$(this).children('.sub-menu').slideDown();
-		}, 
+		},
 		function() {
 			$(this).children('.sub-menu').hide();
 		}
 	);
-	$('.main-navigation li').hover( 
+	$('.main-navigation li').hover(
 		function() {
 			$(this).children('.main-navigation .children').slideDown();
-		}, 
+		},
 		function() {
 			$(this).children('.main-navigation .children').hide();
 		}
-	);	
+	);
 });
 
 //Open social links in a new tab
@@ -34,16 +40,28 @@ jQuery(function($) {
 });
 
 //Toggle sidebar
+function closeSideBar($) {
+	$('.widget-area').toggleClass('widget-area-visible');
+	$('.sidebar-toggle').toggleClass('sidebar-toggled');
+	$('.sidebar-toggle').find('i').toggleClass('fa-times');
+	$('.sidebar-toggle').find('i').toggleClass('fa-bars');
+	$('.sidebar-close-area').toggleClass('sidebar-close-area-opened');
+}
+
 jQuery(function($) {
+	$('.sidebar-close-area').click(function() {
+		closeSideBar($);
+	});
 	$('.sidebar-toggle').click(function() {
 		$('.widget-area').toggleClass('widget-area-visible');
 		$('.sidebar-toggle').toggleClass('sidebar-toggled');
-		$('.sidebar-toggle').find('i').toggleClass('fa-plus fa-times');
+		$('.sidebar-toggle').find('i').toggleClass('fa-bars');
+		$('.sidebar-toggle').find('i').toggleClass('fa-times');
+		$('.sidebar-close-area').toggleClass('sidebar-close-area-opened');
 	});
 	$('.sidebar-close').click(function() {
-		$('.widget-area').toggleClass('widget-area-visible');
-		$('.sidebar-toggle').find('i').toggleClass('fa-plus fa-times');
-	});	
+		closeSideBar($);
+	});
 });
 
 //Parallax
@@ -53,7 +71,7 @@ jQuery(function($) {
 
 //Fit Vids
 jQuery(function($) {
-    $("body").fitVids();  
+    $("body").fitVids();
 });
 
 //Mobile menu
@@ -69,12 +87,12 @@ jQuery(function($) {
 		$(this).parent().fadeOut();
 		return false;
 	});
-});	
+});
 
 //Preloader
 jQuery(function($) {
 	$(window).bind('load', function() {
 		$('.preloader').css('opacity', 0);
-		setTimeout(function(){$('.preloader').hide();}, 600);	
+		setTimeout(function(){$('.preloader').hide();}, 600);
 	});
 });

@@ -6,78 +6,80 @@
  */
 
 if ( ! function_exists( 'oria_setup' ) ) :
-/**
- * Sets up theme defaults and registers support for various WordPress features.
- *
- * Note that this function is hooked into the after_setup_theme hook, which
- * runs before the init hook. The init hook is too late for some features, such
- * as indicating support for post thumbnails.
- */
-function oria_setup() {
-
-	/*
-	 * Make theme available for translation.
-	 * Translations can be filed in the /languages/ directory.
-	 * If you're building a theme based on Oria, use a find and replace
-	 * to change 'oria' to the name of your theme in all the template files
+	/**
+	 * Sets up theme defaults and registers support for various WordPress features.
+	 *
+	 * Note that this function is hooked into the after_setup_theme hook, which
+	 * runs before the init hook. The init hook is too late for some features, such
+	 * as indicating support for post thumbnails.
 	 */
-	load_theme_textdomain( 'oria', get_template_directory() . '/languages' );
+	function oria_setup() {
 
-	// Add default posts and comments RSS feed links to head.
-	add_theme_support( 'automatic-feed-links' );
+		/*
+		 * Make theme available for translation.
+		 * Translations can be filed in the /languages/ directory.
+		 * If you're building a theme based on Oria, use a find and replace
+		 * to change 'oria' to the name of your theme in all the template files
+		 */
+		load_theme_textdomain( 'oria', get_template_directory() . '/languages' );
 
-	/*
-	 * Let WordPress manage the document title.
-	 * By adding theme support, we declare that this theme does not use a
-	 * hard-coded <title> tag in the document head, and expect WordPress to
-	 * provide it for us.
-	 */
-	add_theme_support( 'title-tag' );
+		// Add default posts and comments RSS feed links to head.
+		add_theme_support( 'automatic-feed-links' );
 
-	// Content width
-	global $content_width;
-	if ( ! isset( $content_width ) ) {
-		$content_width = 1170;
+		/*
+		 * Let WordPress manage the document title.
+		 * By adding theme support, we declare that this theme does not use a
+		 * hard-coded <title> tag in the document head, and expect WordPress to
+		 * provide it for us.
+		 */
+		add_theme_support( 'title-tag' );
+
+		// Content width
+		global $content_width;
+		if ( ! isset( $content_width ) ) {
+			$content_width = 1170;
+		}
+
+		/*
+		 * Enable support for Post Thumbnails on posts and pages.
+		 *
+		 * @link http://codex.wordpress.org/Function_Reference/add_theme_support#Post_Thumbnails
+		 */
+		add_theme_support( 'post-thumbnails' );
+		add_image_size('oria-carousel', 390, 260, true);
+		add_image_size('oria-small-thumb', 520);
+		add_image_size('oria-large-thumb', 740);
+		add_image_size('oria-standard-thumb', 600);
+
+		// This theme uses wp_nav_menu() in one location.
+		register_nav_menus( array(
+			'primary' => esc_html__( 'Primary Menu', 'oria' ),
+			'social'  => __( 'Social', 'oria' ),
+		) );
+
+		/*
+		 * Switch default core markup for search form, comment form, and comments
+		 * to output valid HTML5.
+		 */
+		add_theme_support( 'html5', array(
+			'search-form', 'comment-form', 'comment-list', 'gallery', 'caption',
+		) );
+
+		/*
+		 * Enable support for Post Formats.
+		 * See http://codex.wordpress.org/Post_Formats
+		 */
+		add_theme_support( 'post-formats', array(
+			'aside', 'image', 'video', 'quote', 'link',
+		) );
+
+		// Set up the WordPress core custom background feature.
+		add_theme_support( 'custom-background', apply_filters( 'oria_custom_background_args', array(
+			'default-color' => 'f9f6f5',
+			'default-image' => '',
+		) ) );
 	}
 
-	/*
-	 * Enable support for Post Thumbnails on posts and pages.
-	 *
-	 * @link http://codex.wordpress.org/Function_Reference/add_theme_support#Post_Thumbnails
-	 */
-	add_theme_support( 'post-thumbnails' );
-	add_image_size('oria-carousel', 390, 260, true);
-	add_image_size('oria-small-thumb', 520);
-	add_image_size('oria-large-thumb', 740);
-
-	// This theme uses wp_nav_menu() in one location.
-	register_nav_menus( array(
-		'primary' => esc_html__( 'Primary Menu', 'oria' ),
-		'social'  => __( 'Social', 'oria' ),
-	) );
-
-	/*
-	 * Switch default core markup for search form, comment form, and comments
-	 * to output valid HTML5.
-	 */
-	add_theme_support( 'html5', array(
-		'search-form', 'comment-form', 'comment-list', 'gallery', 'caption',
-	) );
-
-	/*
-	 * Enable support for Post Formats.
-	 * See http://codex.wordpress.org/Post_Formats
-	 */
-	add_theme_support( 'post-formats', array(
-		'aside', 'image', 'video', 'quote', 'link',
-	) );
-
-	// Set up the WordPress core custom background feature.
-	add_theme_support( 'custom-background', apply_filters( 'oria_custom_background_args', array(
-		'default-color' => 'f9f6f5',
-		'default-image' => '',
-	) ) );
-}
 endif; // oria_setup
 add_action( 'after_setup_theme', 'oria_setup' );
 
@@ -110,8 +112,17 @@ function oria_widgets_init() {
 			'after_title'   => '</h4>',
 		) );
 	}
+
+	register_sidebar( array(
+		'name' => __( 'Post before footer', 'oria' ),
+		'id' => 'post-footer-1',
+		'description' => ''
+	) );
+
 }
 add_action( 'widgets_init', 'oria_widgets_init' );
+remove_action( 'wp_head', 'jetpack_og_tags' ); // Remove JetPack Open Graph
+//add_action( 'wp_head', 'jetpack_og_tags' );
 
 /**
  * Enqueue scripts and styles.
@@ -119,6 +130,8 @@ add_action( 'widgets_init', 'oria_widgets_init' );
 function oria_scripts() {
 
 	wp_enqueue_style( 'oria-style', get_stylesheet_uri() );
+
+	$in_footer = true;
 
 	if ( get_theme_mod('body_font_name') !='' ) {
 	    wp_enqueue_style( 'oria-body-fonts', '//fonts.googleapis.com/css?family=' . esc_attr(get_theme_mod('body_font_name')) );
@@ -140,17 +153,26 @@ function oria_scripts() {
 		wp_enqueue_script( 'comment-reply' );
 	}
 
-	wp_enqueue_script( 'oria-fitvids', get_template_directory_uri() . '/js/jquery.fitvids.js', array('jquery'), true );
+	wp_enqueue_script( 'oria-fitvids', get_template_directory_uri() . '/js/jquery.fitvids.js', array('jquery'), true, $in_footer );
 
-	wp_enqueue_script( 'oria-slicknav', get_template_directory_uri() . '/js/jquery.slicknav.min.js', array('jquery'), true );
+	wp_enqueue_script( 'oria-slicknav', get_template_directory_uri() . '/js/jquery.slicknav.min.js', array('jquery'), true, $in_footer );
 
-	wp_enqueue_script( 'oria-parallax', get_template_directory_uri() . '/js/parallax.min.js', array('jquery'), true );
+	wp_enqueue_script( 'oria-parallax', get_template_directory_uri() . '/js/parallax.min.js', array('jquery'), true, $in_footer );
 
-	wp_enqueue_script( 'oria-scripts', get_template_directory_uri() . '/js/scripts.js', array('jquery'), true );
+	wp_enqueue_script( 'oria-scripts', get_template_directory_uri() . '/js/scripts.js', array('jquery'), true, $in_footer );
 
-	wp_enqueue_script( 'oria-imagesloaded', get_template_directory_uri() . '/js/imagesloaded.pkgd.min.js', array( 'jquery', 'masonry' ), true );
+	wp_enqueue_script( 'jquery');
+  	wp_enqueue_script( 'masonry');
 
-	wp_enqueue_script( 'oria-masonry-init', get_template_directory_uri() . '/js/masonry-init.js', array( 'jquery' ), true );
+	wp_enqueue_script( 'oria-imagesloaded', get_template_directory_uri() . '/js/imagesloaded.pkgd.min.js', array(), true, $in_footer );
+
+	# vendor
+	wp_enqueue_script( 'oria-vendor-jq-cookie', get_template_directory_uri() . '/vendor/jquery.cookie.js', array(), true, $in_footer );
+
+	# overrides
+	wp_enqueue_script( 'oria-theme-js-overrides', get_template_directory_uri() . '/extra/overrides/theme.js', array(), true, $in_footer );
+	wp_enqueue_style( 'oria-theme-css-overrides', get_template_directory_uri() . '/extra/overrides/theme.css', array() );
+	wp_enqueue_script( 'oria-masonry-init', get_template_directory_uri() . '/js/masonry-init.js', array(), true, $in_footer  );
 
 }
 add_action( 'wp_enqueue_scripts', 'oria_scripts' );
@@ -162,6 +184,8 @@ function oria_enqueue_bootstrap() {
 	wp_enqueue_style( 'oria-bootstrap', get_template_directory_uri() . '/css/bootstrap/bootstrap.min.css', array(), true );
 }
 add_action( 'wp_enqueue_scripts', 'oria_enqueue_bootstrap', 9 );
+remove_action( 'wp_head', 'jetpack_og_tags' ); // Remove JetPack Open Graph
+apply_filters( 'jetpack_enable_opengraph', false );
 
 /**
  * Load html5shiv
@@ -239,9 +263,9 @@ add_filter('excerpt_more', 'oria_excerpt_more');
 */
 if ( ! function_exists( 'oria_sidebar_mode' ) ) {
 	function oria_sidebar_mode() {
-	    if ( is_singular() || !is_active_sidebar( 'sidebar-1' ) ) {
-		echo 'no-toggle';
-	    }
+		if ( is_singular() || !is_active_sidebar( 'sidebar-1' ) ) {
+			echo 'no-toggle';
+		}
 	}
 }
 
@@ -342,3 +366,28 @@ function oria_register_required_plugins() {
 
 }
 add_action( 'tgmpa_register', 'oria_register_required_plugins' );
+
+
+# AMP related
+
+add_action( 'amp_post_template_css', 'xyz_amp_my_additional_css_styles' );
+function xyz_amp_my_additional_css_styles( $amp_template ) {
+    // only CSS here please...
+    ?>
+		.amp-wp-article-featured-image .crp_related {
+			padding-left: 17px;
+		}
+		.amp-wp-article-featured-image .crp_related ul {
+			padding-left: 17px;
+		}
+		.wp-post-image {
+			display: none; /* Because Lazy Load plugin is not active in AMP mode */
+		}
+		.amp-wp-meta.amp-wp-comments-link {
+			display: none;
+		}
+		.amp-wp-article-content amp-img {
+			display: none;
+		}
+    <?php
+}

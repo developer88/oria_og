@@ -1,0 +1,11 @@
+.professional-form-container .form-container input {
+    display: none;
+}
+
+.professional-form-container .form-container .select2-container {
+    padding-bottom: 0px !important;
+}
+
+.professional-form-container .form-container .select2-display-none {
+    display: none;
+}

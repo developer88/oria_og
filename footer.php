@@ -24,5 +24,8 @@
 
 <?php wp_footer(); ?>
 
+<?php include('footer_analytics.php');?>
+<?php include('footer_fonts.php');?>
+
 </body>
 </html>
