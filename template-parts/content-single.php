@@ -10,10 +10,10 @@
   };
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?> itemscope itemtype="http://schema.org/Article">
+<article id="post-<?php the_ID(); ?>" <?php post_class(); ?> itemscope itemtype="https://schema.org/Article">
 
 	<?php if ( has_post_thumbnail() && ( get_theme_mod( 'post_feat_image' ) != 1 ) ) : ?>
-		<div class="single-thumb" itemprop="image" itemscope itemtype="http://schema.org/ImageObject">
+		<div class="single-thumb" itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
 			<?php the_post_thumbnail('oria-standard-thumb'); ?>
       <meta itemprop="url" content="<?php echo ogp_post_image(); ?>">
       <meta itemprop="width" content="600">

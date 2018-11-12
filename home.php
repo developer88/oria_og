@@ -15,7 +15,7 @@ get_header(); ?>
 
     <div style='display: none;'>
         <?php the_title( '<span itemprop="name">', '</span>' ); ?>
-        <img itemprop="image" src="http://onceingermany.ru/wp-content/uploads/2016/01/favicon256.png" alt="OnceInGermany.ru" />
+        <img itemprop="image" src="https://onceingermany.ru/wp-content/uploads/2016/01/favicon256.png" alt="OnceInGermany.ru" />
         <p itemprop="description"><?php echo bloginfo('description'); ?></p>
     </div>
 

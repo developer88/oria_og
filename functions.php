@@ -231,11 +231,11 @@ add_filter('body_class', 'oria_fullwidth_singles');
  */
 
 function oria_footer_credits() {
-	echo '<a href="' . esc_url( __( 'http://wordpress.org/', 'oria' ) ) . '" rel="nofollow">';
+	echo '<a href="' . esc_url( __( 'https://wordpress.org/', 'oria' ) ) . '" rel="nofollow">';
 		printf( __( 'Proudly powered by %s', 'oria' ), 'WordPress' );
 	echo '</a>';
 	echo '<span class="sep"> | </span>';
-	printf( __( 'Theme: %2$s by %1$s.', 'oria' ), 'JustFreeThemes', '<a href="http://justfreethemes.com/oria" rel="nofollow">Oria</a>' );
+	printf( __( 'Theme: %2$s by %1$s.', 'oria' ), 'JustFreeThemes', '<a href="https://justfreethemes.com/oria" rel="nofollow">Oria</a>' );
 }
 add_action( 'oria_footer', 'oria_footer_credits' );
 

@@ -39,7 +39,7 @@
         <meta property="og:site_name" content="<?php echo get_bloginfo('name'); ?>">
         <meta property="og:description" content="<?php echo  bloginfo('description'); ?>" />
         <meta property="og:locale" content="ru_RU" />
-        <meta property="og:image" content="http://onceingermany.ru/wp-content/uploads/2016/01/favicon256.png" />
+        <meta property="og:image" content="https://onceingermany.ru/wp-content/uploads/2016/01/favicon256.png" />
         <meta property="og:title" content="<?php echo get_bloginfo('name'); ?>" />
         <meta property="og:type" content="blog" />
         <meta property="og:url" content="<?php echo bloginfo('url'); ?>" />
@@ -48,7 +48,7 @@
         <meta name="twitter:site" content="@onceingermany">
         <meta name="twitter:title" content="<?php echo get_bloginfo('name'); ?>">
         <meta name="twitter:description" content="<?php echo  bloginfo('description'); ?>">
-        <meta name="twitter:image" content="http://onceingermany.ru/wp-content/uploads/2016/01/favicon256.png">
+        <meta name="twitter:image" content="https://onceingermany.ru/wp-content/uploads/2016/01/favicon256.png">
         <meta name="twitter:creator" content="@onceingermany">
 
         <link rel="canonical" href="<?php echo bloginfo('url'); ?>">

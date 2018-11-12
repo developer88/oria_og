@@ -12,16 +12,16 @@
 ?>
 
 <!DOCTYPE html>
-<html <?php language_attributes(); ?> <?php echo (is_single() == true ? '' : 'itemscope itemtype="http://schema.org/Blog"'); ?> >
+<html <?php language_attributes(); ?> <?php echo (is_single() == true ? '' : 'itemscope itemtype="https://schema.org/Blog"'); ?> >
 <head>
 <meta charset="<?php bloginfo( 'charset' ); ?>">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta content='n_67_dgiTFxsVagGrMYRNoODeZt3vQCZkXrpOQ8SH1o' name='google-site-verification'/>
 <meta name='yandex-verification' content='6586ff46a18607a5' />
-<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="profile" href="https://gmpg.org/xfn/11">
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
 <?php if ( get_theme_mod('site_favicon') && 1 == 2 ) : ?>
-  <link rel='mask-icon' href='http://onceingermany.ru/wp-content/themes/oria/images/favicon.svg' color='braun'>
+  <link rel='mask-icon' href='https://onceingermany.ru/wp-content/themes/oria/images/favicon.svg' color='braun'>
   <link rel="shortcut icon" href="<?php echo esc_url(get_theme_mod('site_favicon')); ?>" />
 <?php endif; ?>
 
@@ -65,7 +65,7 @@
 			</div>
 
 			<div class="header-search js-header-search">
-				<form role="search" method="get" class="header-search-form js-header-search-form" action="http://onceingermany.ru/">
+				<form role="search" method="get" class="header-search-form js-header-search-form" action="https://onceingermany.ru/">
 					<input type="search" class="search-field" placeholder="Поиск…" value="" name="s">
 				</form>
 			</div>
