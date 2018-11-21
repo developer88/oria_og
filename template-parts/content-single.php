@@ -73,7 +73,6 @@
     ?>
 
 		<?php the_content(); ?>
-
 		<?php
 			wp_link_pages( array(
 				'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'oria' ),
@@ -81,14 +80,6 @@
 			) );
 		?>
 	</div><!-- .entry-content -->
-
-  <!-- TODO -->
-  <?php if ( is_active_sidebar( 'post-footer-1' ) ) : ?>
-    <div class="post-footer-widgets block-1">
-        <?php dynamic_sidebar( 'post-footer-1'); ?>
-    </div>
-  <?php endif; ?>
-  <!-- /TODO -->
 
 	<?php if (get_theme_mod('hide_meta_single') != 1 ) : ?>
   	<footer class="entry-footer">

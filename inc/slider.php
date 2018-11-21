@@ -8,7 +8,7 @@
 	//Scripts
 	function oria_slider_scripts() {
 			wp_enqueue_script( 'oria-owl-script', get_template_directory_uri() .  '/js/owl.carousel.min.js', array( 'jquery' ), true );	
-			wp_enqueue_script( 'oria-slider-init', get_template_directory_uri() .  '/js/slider-init.js', array(), true );						
+			wp_enqueue_script( 'oria-slider-init', get_template_directory_uri() .  '/js/slider-init.js', array( 'jquery' ), true );
 			
 			//Slider speed options
 			if ( ! get_theme_mod('carousel_speed') ) {
@@ -21,7 +21,7 @@
 			);			
 			wp_localize_script('oria-slider-init', 'sliderOptions', $slider_options);			
 	}
-	//add_action( 'wp_enqueue_scripts', 'oria_slider_scripts' );
+	add_action( 'wp_enqueue_scripts', 'oria_slider_scripts' );
 
 	//Template
 	if ( ! function_exists( 'oria_slider_template' ) ) {

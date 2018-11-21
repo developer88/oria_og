@@ -370,7 +370,6 @@ a:active {
 .post-navigation .nav-previous {
 	float: left;
 	max-width: 50%;
-	cursor: pointer;
 }
 
 .comment-navigation .nav-next,
@@ -379,7 +378,6 @@ a:active {
 	float: right;
 	text-align: right;
 	max-width: 50%;
-	cursor: pointer;
 }
 .posts-navigation {
 	max-width: 1500px;
@@ -609,7 +607,7 @@ a:active {
 }
 
 .blog-entry-header .entry-title {
-	font-size: 24px;
+	font-size: 28px;
 }
 .single-thumb {
 	margin-bottom: 30px;
@@ -976,20 +974,13 @@ img {
 .sidebar-toggle {
 	height: 50px;
 	width: 10%;
-	float: left;
+	float: right;
 	color: #fff;
 	text-align: center;
 	font-size: 20px;
 	cursor: pointer;
 	padding-top: 9px;
 	background-color: rgba(239, 153, 127, 0.4);
-	-webkit-transition: all 0.8s;
-	transition: all 0.8s;
-}
-.sidebar-toggled {
-	-webkit-transition: all 0.8s;
-	transition: all 0.8s;
-	margin-left: 360px;
 }
 .widget-area {
 	position: fixed;
@@ -1319,7 +1310,7 @@ Slider
 }
 /* 404 */
 .error404 .content-area {
-	/*text-align: center;*/
+	text-align: center;
 }
 .error404 .widget_recent_entries ul {
 	list-style: none;
@@ -1491,96 +1482,3 @@ Slider
 		padding: 0;
 	}
 }
-
-
-/* overrides */
-
-.entry-content img, .entry-content iframe {
-  padding-bottom: 30px;
-  padding-top: 30px;
-}
-
-.entry-content {
-  text-align: justify;
-}
-
-.entry-content div {
-  padding-bottom: 10px;
-}
-
-.entry-content div {
-  display: block;
-  margin: 0px;
-  padding: 0px;
-  padding-bottom: 10px;
-}
-
-/* Header search */
-
-.header-search {
-	float: right;
-}
-
-.header-search .header-search-form {
-	border-left: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.header-search-button:hover {
-	cursor: pointer;
-}
-
-.header-search-button {
-    -webkit-transition: all 0.8s;
-    background-color: rgba(239, 153, 127, 0.4);
-    color: #fff;
-    cursor: pointer;
-    float: right;
-    font-size: 20px;
-    height: 50px;
-    padding-top: 9px;
-    text-align: center;
-    transition: all 0.8s;
-    width: 10%;
-}
-
-.header-search input.search-field {
-	background: transparent;
-	height: 50px;
-	padding: 0px;
-    border-radius: 0px !important;
-    border: 0;
-    color: white;
-    padding-left: 10px;
-    padding-right: 5px;
-    width: 170px;
-}
-
-.header-search input.search-field:focus {
-	outline-color: rgba(239, 153, 127, 0.4);
-}
-
-@media only screen and (max-width: 600px) {
-	.header-search-button {
-		font-size: 16px;
-		height: 46px;
-	}
-
-	.header-search input.search-field {
-		font-size: 16px;
-		height: 46px;
-		width: 110px;
-	}
-}
-
-
-@media only screen and (max-width: 300px) {
-	.header-search input.search-field {
-		width: 86px;
-	}
-}
-
-
-
-
-
-

@@ -9,9 +9,7 @@
  remove_action( 'wp_head', 'jetpack_og_tags' ); // Remove JetPack Open Graph
  apply_filters( 'jetpack_enable_opengraph', false );
  apply_filters( 'jetpack_open_graph_image_height', 1000000000 );
-?>
-
-<!DOCTYPE html>
+?><!DOCTYPE html>
 <html <?php language_attributes(); ?> <?php echo (is_single() == true ? '' : 'itemscope itemtype="https://schema.org/Blog"'); ?> >
 <head>
 <meta charset="<?php bloginfo( 'charset' ); ?>">
@@ -21,6 +19,7 @@
 <link rel="profile" href="https://gmpg.org/xfn/11">
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
 <?php if ( get_theme_mod('site_favicon') && 1 == 2 ) : ?>
+  <!-- TODO: Do we really need this hook 1 == 2 ???? -->
   <link rel='mask-icon' href='https://onceingermany.ru/wp-content/themes/oria/images/favicon.svg' color='braun'>
   <link rel="shortcut icon" href="<?php echo esc_url(get_theme_mod('site_favicon')); ?>" />
 <?php endif; ?>
@@ -28,9 +27,7 @@
 <?php include('header_ogp.php');?>
 <?php include('header_meta.php');?>
 
-<!--header-->
 <?php wp_head(); ?>
-<!-- end of header -->
 
 </head>
 
@@ -41,18 +38,31 @@
   <i class="fa fa-times"></i>
 </div>
 
-<div class="preloader" style='opacity: 0; display: none;'>
-	<div id="preloader-inner">
-		<div class="preload"></div>
-	</div>
-</div>
+<?php
+
+if ( ! is_customize_preview() ) :
+
+    $oria_disable_preloader = get_theme_mod( 'oria_disable_preloader' );
+
+    if ( isset( $oria_disable_preloader ) && ($oria_disable_preloader != 1) ) :
+
+        echo '<div class="preloader" style="opacity: 0; display: none;">';
+        echo '<div id="preloader-inner">';
+        echo '<div class="preload">&nbsp;</div>';
+        echo '</div>';
+        echo '</div>';
+
+    endif;
+
+endif;
+
+?>
 
 <div id="page" class="hfeed site">
 	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'oria' ); ?></a>
 
 	<header id="masthead" class="site-header" role="banner">
 
-		<!-- header -->
 		<div class="top-bar clearfix <?php oria_sidebar_mode(); ?>">
 			<?php if ( has_nav_menu( 'social' ) ) : ?>
 				<nav class="social-navigation clearfix">
@@ -84,7 +94,7 @@
 		</div>
 
 		<nav id="site-navigation" class="main-navigation" role="navigation">
-			<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_id' => 'primary-menu', 'menu_class' => 'menu clearfix', 'fallback_cb' => '' ) ); ?>
+			<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_id' => 'primary-menu', 'menu_class' => 'menu clearfix', ) ); ?>
 		</nav><!-- #site-navigation -->
 		<nav class="mobile-nav"></nav>
 

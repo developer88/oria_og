@@ -79,7 +79,6 @@ if ( ! function_exists( 'oria_setup' ) ) :
 			'default-image' => '',
 		) ) );
 	}
-
 endif; // oria_setup
 add_action( 'after_setup_theme', 'oria_setup' );
 
@@ -112,13 +111,6 @@ function oria_widgets_init() {
 			'after_title'   => '</h4>',
 		) );
 	}
-
-	register_sidebar( array(
-		'name' => __( 'Post before footer', 'oria' ),
-		'id' => 'post-footer-1',
-		'description' => ''
-	) );
-
 }
 add_action( 'widgets_init', 'oria_widgets_init' );
 remove_action( 'wp_head', 'jetpack_og_tags' ); // Remove JetPack Open Graph
@@ -161,10 +153,9 @@ function oria_scripts() {
 
 	wp_enqueue_script( 'oria-scripts', get_template_directory_uri() . '/js/scripts.js', array('jquery'), true, $in_footer );
 
-	wp_enqueue_script( 'jquery');
-  	wp_enqueue_script( 'masonry');
+	wp_enqueue_script( 'oria-imagesloaded', get_template_directory_uri() . '/js/imagesloaded.pkgd.min.js', array( 'jquery', 'masonry' ), true, $in_footer );
 
-	wp_enqueue_script( 'oria-imagesloaded', get_template_directory_uri() . '/js/imagesloaded.pkgd.min.js', array(), true, $in_footer );
+	
 
 	# vendor
 	wp_enqueue_script( 'oria-vendor-jq-cookie', get_template_directory_uri() . '/vendor/jquery.cookie.js', array(), true, $in_footer );
@@ -172,8 +163,7 @@ function oria_scripts() {
 	# overrides
 	wp_enqueue_script( 'oria-theme-js-overrides', get_template_directory_uri() . '/extra/overrides/theme.js', array(), true, $in_footer );
 	wp_enqueue_style( 'oria-theme-css-overrides', get_template_directory_uri() . '/extra/overrides/theme.css', array() );
-	wp_enqueue_script( 'oria-masonry-init', get_template_directory_uri() . '/js/masonry-init.js', array(), true, $in_footer  );
-
+	wp_enqueue_script( 'oria-masonry-init', get_template_directory_uri() . '/js/masonry-init.js', array( 'jquery' ), true );
 }
 add_action( 'wp_enqueue_scripts', 'oria_scripts' );
 
@@ -231,11 +221,11 @@ add_filter('body_class', 'oria_fullwidth_singles');
  */
 
 function oria_footer_credits() {
-	echo '<a href="' . esc_url( __( 'https://wordpress.org/', 'oria' ) ) . '" rel="nofollow">';
+	echo '<a href="' . esc_url( __( 'http://wordpress.org/', 'oria' ) ) . '" rel="nofollow">';
 		printf( __( 'Proudly powered by %s', 'oria' ), 'WordPress' );
 	echo '</a>';
 	echo '<span class="sep"> | </span>';
-	printf( __( 'Theme: %2$s by %1$s.', 'oria' ), 'JustFreeThemes', '<a href="https://justfreethemes.com/oria" rel="nofollow">Oria</a>' );
+	printf( __( 'Theme: %2$s by %1$s.', 'oria' ), 'JustFreeThemes', '<a href="http://justfreethemes.com/oria" rel="nofollow">Oria</a>' );
 }
 add_action( 'oria_footer', 'oria_footer_credits' );
 
